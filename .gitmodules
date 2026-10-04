@@ -1,0 +1,3 @@
+[submodule "fraud-detection-contracts"]
+	path = fraud-detection-contracts
+	url = https://github.com/pf6511/jedha-dts-lead-fraud-detection-contracts.git

@@ -1,0 +1,32 @@
+[project]
+name = "fraud-detection-inference-api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "pf6511", email = "pfelz@free.fr" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.142.2",
+    "mlflow>=3.16.1",
+    "uvicorn>=0.54.0",
+    "fraud-detection-contracts",
+    "boto3>=1.43.108",
+]
+
+[project.scripts]
+fraud-detection-inference-api = "fraud_detection_inference_api:main"
+
+[build-system]
+requires = ["uv_build>=0.12.19,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.1.1",
+]
+
+[tool.uv.sources]
+fraud-detection-contracts = { path = "./fraud-detection-contracts" }

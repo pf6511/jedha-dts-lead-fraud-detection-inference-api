@@ -29,4 +29,4 @@ dev = [
 ]
 
 [tool.uv.sources]
-fraud-detection-contracts = { path = "./fraud-detection-contracts" }
+fraud-detection-contracts = { path = "./fraud-detection-contracts", editable = true }

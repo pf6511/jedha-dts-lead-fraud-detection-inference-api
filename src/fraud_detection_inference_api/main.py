@@ -6,7 +6,13 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from mlflow import MlflowClient
 
-from fraud_detection_contracts import FraudDetectionInferenceInput,FraudDetectionInferenceOutput
+import pandas as pd
+from fastapi import Request
+
+from fraud_detection_contracts import (
+    FraudDetectionInferenceInput,
+    FraudDetectionInferenceOutput,
+)
 
 load_dotenv("secrets.env")
 
@@ -64,3 +70,54 @@ app = FastAPI(
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+@app.post(
+    "/predict",
+    response_model=FraudDetectionInferenceOutput,
+)
+def predict(
+    payload: FraudDetectionInferenceInput,
+    request: Request,
+) -> FraudDetectionInferenceOutput:
+
+    model = request.app.state.model
+    threshold = request.app.state.threshold
+
+    transaction = payload.transaction
+    card_features = payload.card_features
+
+    X = pd.DataFrame(
+        [
+            {
+                "amt": transaction.amt,
+                "lat": transaction.lat,
+                "long": transaction.long,
+                "city_pop": transaction.city_pop,
+                "merch_lat": transaction.merch_lat,
+                "merch_long": transaction.merch_long,
+                "distance_km": card_features.distance_km,
+                "card_transaction_count": card_features.card_transaction_count,
+                "card_fraud_count": card_features.card_fraud_count,
+                "card_fraud_rate": card_features.card_fraud_rate,
+                "card_avg_amount": card_features.card_avg_amount,
+                "merchant": transaction.merchant,
+                "category": transaction.category,
+                "gender": transaction.gender,
+                "state": transaction.state,
+                "job": transaction.job,
+            }
+        ]
+    )
+
+
+    fraud_probability = float(
+        model.predict_proba(X)[0, 1]
+    )
+
+    fraud_prediction = fraud_probability >= threshold
+
+
+    return FraudDetectionInferenceOutput(
+        fraud_probability=fraud_probability,
+        fraud_prediction=fraud_prediction,
+    )

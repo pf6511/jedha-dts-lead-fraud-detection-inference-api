@@ -772,7 +772,7 @@ wheels = [
 [[package]]
 name = "fraud-detection-contracts"
 version = "0.1.0"
-source = { directory = "fraud-detection-contracts" }
+source = { editable = "fraud-detection-contracts" }
 dependencies = [
     { name = "pydantic" },
 ]
@@ -792,6 +792,7 @@ dependencies = [
     { name = "fastapi" },
     { name = "fraud-detection-contracts" },
     { name = "mlflow" },
+    { name = "pandas" },
     { name = "uvicorn" },
 ]
 
@@ -805,8 +806,9 @@ dev = [
 requires-dist = [
     { name = "boto3", specifier = ">=1.43.108" },
     { name = "fastapi", specifier = ">=0.142.2" },
-    { name = "fraud-detection-contracts", directory = "fraud-detection-contracts" },
+    { name = "fraud-detection-contracts", editable = "fraud-detection-contracts" },
     { name = "mlflow", specifier = ">=3.16.1" },
+    { name = "pandas", specifier = ">=3.0.6" },
     { name = "uvicorn", specifier = ">=0.54.0" },
 ]
 

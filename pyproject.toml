@@ -13,10 +13,9 @@ dependencies = [
     "uvicorn>=0.54.0",
     "fraud-detection-contracts",
     "boto3>=1.43.108",
+    "pandas>=3.0.6",
 ]
 
-[project.scripts]
-fraud-detection-inference-api = "fraud_detection_inference_api:main"
 
 [build-system]
 requires = ["uv_build>=0.12.19,<0.13.0"]

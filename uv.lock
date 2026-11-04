@@ -771,7 +771,7 @@ wheels = [
 
 [[package]]
 name = "fraud-detection-contracts"
-version = "0.1.0"
+version = "0.2.0"
 source = { editable = "fraud-detection-contracts" }
 dependencies = [
     { name = "pydantic" },
@@ -785,7 +785,7 @@ dev = [{ name = "pytest", specifier = ">=9.1.1" }]
 
 [[package]]
 name = "fraud-detection-inference-api"
-version = "0.1.0"
+version = "0.3.0"
 source = { editable = "." }
 dependencies = [
     { name = "boto3" },
@@ -793,6 +793,7 @@ dependencies = [
     { name = "fraud-detection-contracts" },
     { name = "mlflow" },
     { name = "pandas" },
+    { name = "python-dotenv" },
     { name = "uvicorn" },
 ]
 
@@ -809,6 +810,7 @@ requires-dist = [
     { name = "fraud-detection-contracts", editable = "fraud-detection-contracts" },
     { name = "mlflow", specifier = ">=3.16.1" },
     { name = "pandas", specifier = ">=3.0.6" },
+    { name = "python-dotenv", specifier = ">=1.1.0" },
     { name = "uvicorn", specifier = ">=0.54.0" },
 ]
 

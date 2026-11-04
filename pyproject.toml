@@ -1,10 +1,10 @@
 [project]
 name = "fraud-detection-inference-api"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.2.0"
+description = "Fraud detection inference API: serves the production model of the MLflow registry behind an API key"
 readme = "README.md"
 authors = [
-    { name = "pf6511", email = "pfelz@free.fr" }
+    { name = "mygithub", email = "mymail" }
 ]
 requires-python = ">=3.12"
 dependencies = [
@@ -14,6 +14,7 @@ dependencies = [
     "fraud-detection-contracts",
     "boto3>=1.43.108",
     "pandas>=3.0.6",
+    "python-dotenv>=1.1.0",
 ]
 
 
